@@ -1,0 +1,16 @@
+torch
+ultralytics
+opencv-python-headless
+pillow
+tqdm
+yacs
+timm
+einops
+pytorch-lightning
+omegaconf
+hydra-core
+pyrootutils
+trimesh
+roma
+huggingface_hub
+braceexpand
