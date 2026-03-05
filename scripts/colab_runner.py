@@ -1,3 +1,17 @@
+"""
+Colab-only runner.
+
+Purpose:
+- Upload an image in Google Colab
+- Install dependencies
+- Download checkpoints
+- Run multi-person 3D reconstruction
+- Download the output OBJ(s)
+
+For reusable pipeline code, see: src/.../pipeline.py
+For local usage, see: scripts/run_pipeline.py
+"""
+
 import torch
 print("CUDA available?", torch.cuda.is_available())
 if torch.cuda.is_available():
