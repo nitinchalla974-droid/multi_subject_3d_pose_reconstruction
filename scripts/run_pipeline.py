@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from src.pipeline import run_pipeline  # if your pipeline is still at src/pipeline.py
+from src.pipeline import run_pipeline
 
 
 def parse_args() -> argparse.Namespace:
@@ -25,11 +25,11 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--pad", type=float, default=0.15, help="Padding around bbox for crop (default: 0.15)")
 
     p.add_argument(
-    "--device",
-    default="auto",
-    choices=["auto", "cpu", "cuda"],
-    help="Device to use: auto/cpu/cuda (default: auto)",
-)
+        "--device",
+        default="auto",
+        choices=["auto", "cpu", "cuda"],
+        help="Device to use: auto/cpu/cuda (default: auto)",
+    )
     p.add_argument("--hf_token", default=None, help="Optional HF token. If not set, uses env var HF_TOKEN")
 
     return p.parse_args()
@@ -42,6 +42,8 @@ def main() -> None:
     if not image_path.exists():
         raise FileNotFoundError(f"Image not found: {image_path}")
 
+    device_arg = None if args.device == "auto" else args.device
+
     merged_obj, individual_objs = run_pipeline(
         image=str(image_path),
         out_dir=args.out_dir,
@@ -53,14 +55,14 @@ def main() -> None:
         conf=args.conf,
         iou=args.iou,
         pad=args.pad,
-        device=args.device,
+        device=device_arg,
         hf_token=args.hf_token,
     )
 
     print("\n✅ Done.")
     print(f"✅ Merged mesh: {merged_obj}")
-    for p in individual_objs:
-        print(f"✅ Person mesh: {p}")
+    for pth in individual_objs:
+        print(f"✅ Person mesh: {pth}")
 
 
 if __name__ == "__main__":
