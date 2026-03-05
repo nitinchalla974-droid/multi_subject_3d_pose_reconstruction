@@ -24,7 +24,12 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--iou", type=float, default=0.50, help="YOLO IoU threshold (default: 0.50)")
     p.add_argument("--pad", type=float, default=0.15, help="Padding around bbox for crop (default: 0.15)")
 
-    p.add_argument("--device", default=None, choices=["cpu", "cuda", None], help="Force device (cpu/cuda). Default: auto")
+    p.add_argument(
+    "--device",
+    default="auto",
+    choices=["auto", "cpu", "cuda"],
+    help="Device to use: auto/cpu/cuda (default: auto)",
+)
     p.add_argument("--hf_token", default=None, help="Optional HF token. If not set, uses env var HF_TOKEN")
 
     return p.parse_args()
