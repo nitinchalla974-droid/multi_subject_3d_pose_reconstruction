@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+
+# OS
+.DS_Store
+
+# Jupyter/Colab
+.ipynb_checkpoints/
+
+# Project outputs / generated files
+outputs/
+checkpoints/
+third_party/
+
+# Model and large artifacts
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# 3D outputs
+*.obj
+*.ply
+*.glb
+*.gltf
+
+# Logs
+*.log
+
+Add .gitignore
